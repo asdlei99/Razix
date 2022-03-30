@@ -1,6 +1,8 @@
 #pragma once
 
 #include <random>
+#include <emmintrin.h>
+#include <smmintrin.h>
 
 namespace Razix {
     
@@ -83,8 +85,8 @@ namespace Razix {
             if (&other == this) {
                 return *this;
             }
-            __m128i x = _mm_load_si128((__m128i*)other.data);
-            _mm_store_si128((__m128i*)data, x);
+//            __m128i x = _mm_load_si128((__m128i*)other.data);
+//            _mm_store_si128((__m128i*)data, x);
             return *this;
         }
 

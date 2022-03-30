@@ -49,9 +49,9 @@ namespace Razix {
         std::vector<T> GetComponentsOfType()
         {
             std::vector<T> components;
-            auto& view = m_Registry.view<T>();
-            for (auto& entity : view)
-                components.push_back(view.get<T>(entity));
+            auto view = m_Registry.view<T>();
+            for (auto entity : view)
+                components.push_back(view.template get<T>(entity));
 
             return components;
         }

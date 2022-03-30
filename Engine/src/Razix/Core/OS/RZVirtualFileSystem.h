@@ -72,7 +72,7 @@ namespace Razix
 		 * @param path The virtual path to which the file is being written to  
 		 * @returns True, if the file was written successfully  
 		 */
-		bool writeFile(const std::string& path, uint8_t* buffer);
+		bool writeFile(const std::string& path, uint8_t* buffer, uint32_t size);
 		/**
 		 * Writes the text file given the virtual path
 		 * 

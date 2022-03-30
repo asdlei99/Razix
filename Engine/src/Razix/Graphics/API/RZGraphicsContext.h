@@ -12,13 +12,17 @@ namespace Razix
         /* The Render API to use for rendering the application */
         enum class RenderAPI
         {
-            NONE = -1,
-            OPENGL = 0,
-            VULKAN = 1,
-            DIRECTX11 = 2,
-            DIRECTX12 = 3,  // Not Supported yet!
-            GXM = 4,        // Not Supported yet! (PSVita)
-            GCM = 5         // Not Supported yet! (PS3)
+            NONE        = -1,
+            OPENGL      = 0,
+            VULKAN      = 1,
+            METAL       = 2,    // MacOS and iOS only
+            DIRECTX11   = 3,    // To be removed in favour of a single low-level API OpenGL
+            DIRECTX12   = 4,    // Not Supported yet!
+            GXM         = 5,    // Not Supported yet! (PSVita)
+            GCM         = 6,    // Not Supported yet! (PS3)
+            GNM         = 7,    // Not Supported yet! (PS4)
+            GNMX        = 8,    // Not Supported yet! (PS4 abstracted API)
+            AGC         = 9     // Not Supported yet! (PS5)
         };
 
         /**

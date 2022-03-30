@@ -2,6 +2,14 @@
 
 namespace Razix
 {
+
+enum class FileOpenFlags
+  {
+      READ,
+      WRITE,
+      READ_WRITE,
+      WRITE_READ
+  };
     /**
      * Provides a OS independent interface to Interact with the files stored on the host
      */
@@ -65,7 +73,7 @@ namespace Razix
          * @param buffer The content that will be written to the fire
          * @returns True, if the write operation was successful
          */
-        static bool WriteFile(const std::string& path, uint8_t* buffer);
+        static bool WriteFile(const std::string& path, uint8_t* buffer, uint32_t size);
 
         /**
          * Writes the string to a text file
@@ -101,6 +109,31 @@ namespace Razix
             }
 
             return !IsRelativePath(path);
+        }
+        
+        static const char* GetFileOpenModeString(FileOpenFlags flag)
+        {
+            if(flag == FileOpenFlags::READ)
+            {
+                return "rb";
+            }
+            else if(flag == FileOpenFlags::WRITE)
+            {
+                return "wb";
+            }
+            else if(flag == FileOpenFlags::READ_WRITE)
+            {
+                return "rb+";
+            }
+            else if(flag == FileOpenFlags::WRITE_READ)
+            {
+                return "wb+";
+            }
+            else
+            {
+                //RAZIX_CORE_WARN("Invalid open flag");
+                return "rb";
+            }
         }
     };
 }

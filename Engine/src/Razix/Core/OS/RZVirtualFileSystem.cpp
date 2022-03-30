@@ -14,7 +14,7 @@ namespace Razix
         // Instance is automatically created once the system is Started Up
         RAZIX_CORE_INFO("[Virtual File System] Starting Up Virtual File Sytem");
         //Razix::RZSplashScreen::Get().setLogString("STATIC_INITIALIZATION : Starting VFS...");
-        Razix::RZSplashScreen::Get().setLogString("Starting VFS...");
+        //Razix::RZSplashScreen::Get().setLogString("Starting VFS...");
 
         // Static Initialization load basic paths + root paths in consoles
         //  1.1. Mount engine specific Paths
@@ -109,11 +109,11 @@ namespace Razix
         return resolvePhysicalPath(path, physicalPath) ? RZFileSystem::ReadTextFile(physicalPath) : nullptr;
     }
 
-    bool RZVirtualFileSystem::writeFile(const std::string& path, uint8_t* buffer)
+    bool RZVirtualFileSystem::writeFile(const std::string& path, uint8_t* buffer, uint32_t size)
     {
         // RAZIX_ASSERT(s_Instance, "VFS was not Started Up properly");
 		std::string physicalPath;
-        return resolvePhysicalPath(path, physicalPath) ? RZFileSystem::WriteFile(physicalPath, buffer) : false;
+        return resolvePhysicalPath(path, physicalPath) ? RZFileSystem::WriteFile(physicalPath, buffer, size) : false;
     }
 
     bool RZVirtualFileSystem::writeTextFile(const std::string& path, const std::string& text)

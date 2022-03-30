@@ -10,7 +10,7 @@ namespace Razix
     {
     public:
         /* Describes the stage of release */
-        enum class Stage
+        enum Stage
         {
             Development,
             Alpha,

@@ -21,7 +21,7 @@ namespace Razix
             s_CoreLogger = spdlog::stdout_color_mt(coreLoggerName.str());
             s_CoreLogger->set_level(spdlog::level::trace);
             RAZIX_CORE_INFO("Starting Up Core Engine Logger");
-            Razix::RZSplashScreen::Get().setLogString("Starting Up Core Engine Logger");
+            //Razix::RZSplashScreen::Get().setLogString("Starting Up Core Engine Logger");
 
 			std::stringstream appLoggerName;
 			appLoggerName << std::setw(18) << std::left << "Razix Application";
@@ -29,7 +29,7 @@ namespace Razix
             s_ApplicationLogger = spdlog::stdout_color_mt(appLoggerName.str());
             s_ApplicationLogger->set_level(spdlog::level::trace);
             RAZIX_INFO("Starting Up Engine Application Logger");
-            Razix::RZSplashScreen::Get().setLogString("Starting Up Engine Application Logger");
+            //Razix::RZSplashScreen::Get().setLogString("Starting Up Engine Application Logger");
         }
 
         void RZLog::Shutdown()

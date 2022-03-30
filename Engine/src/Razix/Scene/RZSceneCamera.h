@@ -5,6 +5,9 @@
 
 #include <glm/glm.hpp>
 
+#include <cereal/types/vector.hpp>
+#include <cereal/archives/json.hpp>
+
 namespace Razix {
     
     class RAZIX_API RZSceneCamera : public Graphics::Camera3D

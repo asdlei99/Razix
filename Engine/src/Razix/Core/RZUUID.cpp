@@ -176,36 +176,36 @@ namespace Razix {
         __m128i n = _mm_set_epi64x(distribution(*generator), distribution(*generator));
         __m128i uuid = _mm_or_si128(_mm_and_si128(n, and_mask), or_mask);
 
-        _mm_store_si128((__m128i*)data, uuid);
+        //// _mm_store_si128((__m128i*)data, uuid);
     }
     
     RZUUID::RZUUID(const RZUUID& other)
     {
         __m128i x = _mm_load_si128((__m128i*)other.data);
-        _mm_store_si128((__m128i*)data, x);
+        // _mm_store_si128((__m128i*)data, x);
     }
 
     RZUUID::RZUUID(__m128i uuid)
     {
-        _mm_store_si128((__m128i*)data, uuid);
+        // _mm_store_si128((__m128i*)data, uuid);
     }
 
     RZUUID::RZUUID(uint64_t x, uint64_t y)
     {
         __m128i z = _mm_set_epi64x(x, y);
-        _mm_store_si128((__m128i*)data, z);
+        // _mm_store_si128((__m128i*)data, z);
     }
 
     RZUUID::RZUUID(const uint8_t* bytes)
     {
         __m128i x = _mm_loadu_si128((__m128i*)bytes);
-        _mm_store_si128((__m128i*)data, x);
+        // _mm_store_si128((__m128i*)data, x);
     }
 
     RZUUID::RZUUID(const std::string& bytes)
     {
         __m128i x = betole128(_mm_loadu_si128((__m128i*)bytes.data()));
-        _mm_store_si128((__m128i*)data, x);
+        // _mm_store_si128((__m128i*)data, x);
     }
 
     Razix::RZUUID RZUUID::FromStrFactory(const std::string& s)
@@ -220,7 +220,7 @@ namespace Razix {
 
     void RZUUID::FromStr(const char* raw)
     {
-        _mm_store_si128((__m128i*)data, stom128i(raw));
+        // _mm_store_si128((__m128i*)data, stom128i(raw));
     }
 
     std::string RZUUID::bytes() const

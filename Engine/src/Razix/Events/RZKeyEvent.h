@@ -11,6 +11,9 @@ namespace Razix {
 		inline int GetKeyCode() const { return m_KeyCode; }
 
 		EVENT_CLASS_CATEGORY((int)EventCategory::EventCategoryKeyboard | (int)EventCategory::EventCategoryInput)
+        static EventType GetStaticType() { return EventType::MouseScrolled; }
+        virtual EventType GetEventType() const override { return GetStaticType(); }
+        virtual const char* GetName() const override { return "MouseScrolled"; }
 	protected:
 		RZKeyEvent(int keycode)
 			: m_KeyCode(keycode) {}
@@ -33,7 +36,10 @@ namespace Razix {
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(KeyPressed)
+//		EVENT_CLASS_TYPE(KeyPressed)
+        static EventType GetStaticType() { return EventType::MouseScrolled; }
+        virtual EventType GetEventType() const override { return GetStaticType(); }
+        virtual const char* GetName() const override { return "MouseScrolled"; }
 	private:
 		int m_RepeatCount;
 	};
@@ -51,6 +57,9 @@ namespace Razix {
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(KeyReleased)
+//		EVENT_CLASS_TYPE(KeyReleased)
+        static EventType GetStaticType() { return EventType::MouseScrolled; }
+        virtual EventType GetEventType() const override { return GetStaticType(); }
+        virtual const char* GetName() const override { return "MouseScrolled"; }
 	};
 }

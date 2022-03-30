@@ -8,7 +8,7 @@
 
 #ifdef RAZIX_RENDER_API_METAL
 
-#include <Metal/Metal.hpp>
+//#include <Metal/Metal.hpp>
 
 namespace Razix {
     namespace Graphics{

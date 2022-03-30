@@ -13,7 +13,7 @@ namespace Razix {
         // Instance is automatically created once the system is Started Up
         RAZIX_CORE_INFO("[Scene Manager] Starting Up Scene Manager");
         //Razix::RZSplashScreen::Get().setLogString("STATIC_INITIALIZATION : Starting Scene Manager...");
-        Razix::RZSplashScreen::Get().setLogString("Starting Scene Manager...");
+        //Razix::RZSplashScreen::Get().setLogString("Starting Scene Manager...");
         // TODO: Load scenes from memory --> Static initialization using macros while building it as a game
     }
 

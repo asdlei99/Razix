@@ -28,7 +28,7 @@
 #define RAZIX_HIDDEN
 
 #else
-    #define RAZIX_API __attribute__((visibility("default")))
+    #define RAZIX_API 
     #define RAZIX_HIDDEN __attribute__((visibility("hidden")))
     #define RAZIX_DEBUG_BREAK()
 
@@ -146,7 +146,7 @@
 
 // Inline macros
 #define RAZIX_INLINE inline 
-#define RAZIX_FORCE_INLINE __forceinline
+#define RAZIX_FORCE_INLINE inline
 
 #ifdef RAZIX_DISTRIBUTION
     #define RAZIX_INLINE RAZIX_FORCE_INLINE

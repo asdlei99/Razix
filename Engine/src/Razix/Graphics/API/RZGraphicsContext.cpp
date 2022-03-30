@@ -9,6 +9,10 @@
 #include "Razix/Platform/API/Vulkan/VKContext.h"
 #endif
 
+#ifdef RAZIX_RENDER_API_METAL
+#include "Razix/Platform/API/Metal/MTLContext.h"
+#endif
+
 #ifdef RAZIX_RENDER_API_DIRECTX11
 #include "Razix/Platform/API/DirectX11/DX11Context.h"
 #endif
@@ -25,9 +29,14 @@ namespace Razix {
         void RZGraphicsContext::Create(const WindowProperties& properties, RZWindow* window) {
 
             switch (s_RenderAPI) {
+#ifdef RAZIX_RENDER_API_OPENGL
                 case Razix::Graphics::RenderAPI::OPENGL:    s_Context = new OpenGLContext((GLFWwindow*) window->GetNativeWindow()); break;
-                case Razix::Graphics::RenderAPI::VULKAN:    s_Context = new VKContext(window);                                      break;
+#endif
+                case Razix::Graphics::RenderAPI::VULKAN:    s_Context = (RZGraphicsContext*) new VKContext(window);                                      break;
+                case Razix::Graphics::RenderAPI::METAL:     s_Context = (RZGraphicsContext*) new MTLContext(window);                                     break;
+#ifdef RAZIX_RENDER_API_DIRECTX11
                 case Razix::Graphics::RenderAPI::DIRECTX11: s_Context = new DX11Context(window);                                    break;
+#endif
                 case Razix::Graphics::RenderAPI::DIRECTX12:
                 case Razix::Graphics::RenderAPI::GXM:
                 case Razix::Graphics::RenderAPI::GCM:
@@ -41,22 +50,29 @@ namespace Razix {
         }
 
         RZGraphicsContext* RZGraphicsContext::GetContext() {
-            switch (s_RenderAPI) {
-                case Razix::Graphics::RenderAPI::OPENGL:    return static_cast<OpenGLContext*> (s_Context); break;
-                case Razix::Graphics::RenderAPI::VULKAN:    return static_cast<VKContext*>     (s_Context); break;
-                case Razix::Graphics::RenderAPI::DIRECTX11: return static_cast<DX11Context*>   (s_Context); break;
-                case Razix::Graphics::RenderAPI::DIRECTX12:
-                case Razix::Graphics::RenderAPI::GXM:
-                case Razix::Graphics::RenderAPI::GCM:
-                default:                                    return s_Context; break;
-            }
-            return nullptr;
+//            switch (s_RenderAPI) {
+//#ifdef RAZIX_RENDER_API_OPENGL
+//                case Razix::Graphics::RenderAPI::OPENGL:    return (s_Context); break;
+//#endif
+//                case Razix::Graphics::RenderAPI::VULKAN:    return (s_Context); break;
+//                case Razix::Graphics::RenderAPI::METAL:     return (s_Context); break;
+//#ifdef RAZIX_RENDER_API_DIRECTX11
+//                case Razix::Graphics::RenderAPI::DIRECTX11: return (s_Context); break;
+//#endif
+//                case Razix::Graphics::RenderAPI::DIRECTX12:
+//                case Razix::Graphics::RenderAPI::GXM:
+//                case Razix::Graphics::RenderAPI::GCM:
+//                default:                                    return s_Context; break;
+//            }
+//            return nullptr;
+            return s_Context;
         }
 
         const std::string Graphics::RZGraphicsContext::GetRenderAPIString() {
             switch (s_RenderAPI) {
                 case Razix::Graphics::RenderAPI::OPENGL:    return "OpenGL";            break;
                 case Razix::Graphics::RenderAPI::VULKAN:    return "Vulkan";            break;
+                case Razix::Graphics::RenderAPI::METAL:     return "Metal";             break;
                 case Razix::Graphics::RenderAPI::DIRECTX11: return "DirectX 11";        break;
                 case Razix::Graphics::RenderAPI::DIRECTX12: return "DirectX 12";        break;
                 case Razix::Graphics::RenderAPI::GXM:       return "SCE GXM (PSVita)";  break;

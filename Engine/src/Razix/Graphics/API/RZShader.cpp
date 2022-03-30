@@ -21,7 +21,7 @@ namespace Razix {
         RZShader* RZShader::Create(const std::string& filePath)
         {
             switch (Graphics::RZGraphicsContext::GetRenderAPI()) {
-                case Razix::Graphics::RenderAPI::OPENGL:        return new OpenGLShader(filePath); break;
+                case Razix::Graphics::RenderAPI::OPENGL:        //return new OpenGLShader(filePath); break;
                 case Razix::Graphics::RenderAPI::VULKAN:        return new VKShader(filePath); break;
                 case Razix::Graphics::RenderAPI::DIRECTX11:
                 case Razix::Graphics::RenderAPI::DIRECTX12:

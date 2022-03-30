@@ -74,7 +74,7 @@ namespace Razix {
             void setSensitivity(float sensitivity) { MouseSensitivity = sensitivity; updateCameraVectors(); }
 
             // Returns the view matrix calculated using Euler Angles and the LookAt Matrix
-            RAZIX_FORCE_INLINE glm::mat4 getViewMatrix();
+            glm::mat4 getViewMatrix();
 
             glm::mat4 getViewMatrixLH();
             glm::mat4 getViewMatrixRH();

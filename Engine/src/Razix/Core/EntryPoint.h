@@ -78,7 +78,9 @@ extern Razix::RZApplication* Razix::CreateApplication();
 
 #ifdef RAZIX_PLATFORM_MACOS
 
-    #include "Platform/MacOS/MacOSXOS.h"
+    //    #include "Platform/MacOS/MacOSXOS.h"
+    #include "Platform/Windows/WindowsOS.h"
+
     #include "Razix/Core/RZSplashScreen.h" // TODO: Design this for MacOSX
 
 
@@ -91,15 +93,15 @@ extern Razix::RZApplication* Razix::CreateApplication();
         };
 
         // Splash Screen!
-        Razix::RZSplashScreen::Get().init();
-        Razix::RZSplashScreen::Get().setVersionString("Version : " + std::string(Razix::RazixVersion.getVersionString()));
-        Razix::RZSplashScreen::Get().setLogString("Initializing Razix Engine...");
+//        Razix::RZSplashScreen::Get().init();
+//        Razix::RZSplashScreen::Get().setVersionString("Version : " + std::string(Razix::RazixVersion.getVersionString()));
+//        Razix::RZSplashScreen::Get().setLogString("Initializing Razix Engine...");
 
         // 1.-> Logging System Initialization
         Razix::Debug::RZLog::StartUp();
 
         // Create the OS Instance
-        auto macosxOS = new Razix::MacOSXOS();
+        auto macosxOS = new Razix::WindowsOS();
         Razix::RZOS::SetInstance(macosxOS);
 
         //-------------------------------//
@@ -112,7 +114,7 @@ extern Razix::RZApplication* Razix::CreateApplication();
         if(argc > 1)
             Razix::RZEngine::Get().commandLineParser.parse(args);
 
-        Razix::RZSplashScreen::Get().setLogString("Loading Project file...");
+        //Razix::RZSplashScreen::Get().setLogString("Loading Project file...");
 
         // Application auto Initialization by the Engine
         Razix::CreateApplication();

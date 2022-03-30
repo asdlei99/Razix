@@ -166,7 +166,7 @@ namespace Razix
                 {
                     m_Ptr = moving.GetPointer();
                     m_Counter = moving.GetCounter();
-                    m_Counter->reference();
+                    //m_Counter->reference();
                 }
             }
             return *this;
@@ -288,7 +288,7 @@ namespace Razix
 		explicit WeakReference(T* ptr) noexcept
 			: m_Ptr(ptr)
 		{
-			m_Counter = new RefCount();
+			//m_Counter = new RefCount();
 			m_Counter->WeakReference();
 		}
 

@@ -24,7 +24,7 @@ project "Glad"
         "include"
     }
 
-    filter "system:linux"
+    filter "system:linux or system:macosx"
         pic "On"
 
         systemversion "latest"

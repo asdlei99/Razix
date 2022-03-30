@@ -4,6 +4,7 @@
 #include <stdint.h>
 
 //-----System Includes-----//
+#ifdef __cplusplus
 #include <iostream>
 #include <iomanip>
 #include <memory>
@@ -33,3 +34,4 @@
 #include <immintrin.h>
 
 //-----3rd Party-----//
+#endif

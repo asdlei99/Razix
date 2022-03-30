@@ -20,7 +20,10 @@ namespace Razix {
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(MouseMoved)
+//		EVENT_CLASS_TYPE(MouseMoved)
+        static EventType GetStaticType() { return EventType::MouseMoved; }
+        virtual EventType GetEventType() const override { return GetStaticType(); }
+        virtual const char* GetName() const override { return "MouseScrolled"; }
 			EVENT_CLASS_CATEGORY((int)EventCategory::EventCategoryMouse | (int)EventCategory::EventCategoryInput)
 	private:
 		float m_MouseX, m_MouseY;
@@ -42,7 +45,10 @@ namespace Razix {
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(MouseScrolled)
+//		EVENT_CLASS_TYPE(MouseScrolled)
+        static EventType GetStaticType() { return EventType::MouseScrolled; }
+        virtual EventType GetEventType() const override { return GetStaticType(); }
+        virtual const char* GetName() const override { return "MouseScrolled"; }
 			EVENT_CLASS_CATEGORY((int)EventCategory::EventCategoryMouse | (int)EventCategory::EventCategoryInput)
 	private:
 		float m_XOffset, m_YOffset;
@@ -53,6 +59,9 @@ namespace Razix {
 	public:
 		inline int GetMouseButton() const { return m_Button; }
 
+        static EventType GetStaticType() { return EventType::MouseScrolled; }
+        virtual EventType GetEventType() const override { return GetStaticType(); }
+        virtual const char* GetName() const override { return "MouseScrolled"; }
 		EVENT_CLASS_CATEGORY((int)EventCategory::EventCategoryMouse | (int)EventCategory::EventCategoryInput)
 	protected:
 		RZMouseButtonEvent(int button)
@@ -74,7 +83,10 @@ namespace Razix {
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(MouseButtonPressed)
+//		EVENT_CLASS_TYPE(MouseButtonPressed)
+        static EventType GetStaticType() { return EventType::MouseScrolled; }
+        virtual EventType GetEventType() const override { return GetStaticType(); }
+        virtual const char* GetName() const override { return "MouseScrolled"; }
 	};
 
 	class RAZIX_API RZMouseButtonReleasedEvent : public RZMouseButtonEvent
@@ -90,7 +102,10 @@ namespace Razix {
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(MouseButtonReleased)
+//		EVENT_CLASS_TYPE(MouseButtonReleased)
+        static EventType GetStaticType() { return EventType::MouseScrolled; }
+        virtual EventType GetEventType() const override { return GetStaticType(); }
+        virtual const char* GetName() const override { return "MouseScrolled"; }
 	};
 
 }

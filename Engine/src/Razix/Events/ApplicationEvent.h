@@ -19,7 +19,10 @@ namespace Razix {
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(WindowResize)
+//		EVENT_CLASS_TYPE(EventType::WindowResize)
+        static EventType GetStaticType() { return EventType::WindowResize; }
+        virtual EventType GetEventType() const override { return GetStaticType(); }
+        virtual const char* GetName() const override { return "test"; }
 		EVENT_CLASS_CATEGORY((int)EventCategory::EventCategoryApplication)
 	private:
 		unsigned int m_Width, m_Height;
@@ -30,7 +33,10 @@ namespace Razix {
 	public:
 		WindowCloseEvent() {}
 
-		EVENT_CLASS_TYPE(WindowClose)
+//		EVENT_CLASS_TYPE(return EventType::WindowClose)
+        static EventType GetStaticType() { return EventType::WindowClose; }
+        virtual EventType GetEventType() const override { return GetStaticType(); }
+        virtual const char* GetName() const override { return "test"; }
 		EVENT_CLASS_CATEGORY((int)EventCategory::EventCategoryApplication)
 	};
 
@@ -39,7 +45,10 @@ namespace Razix {
 	public:
 		AppTickEvent() {}
 
-		EVENT_CLASS_TYPE(AppTick)
+//		EVENT_CLASS_TYPE(return EventType::AppTick)
+        static EventType GetStaticType() { return EventType::AppTick; }
+        virtual EventType GetEventType() const override { return GetStaticType(); }
+        virtual const char* GetName() const override { return "test"; }
 		EVENT_CLASS_CATEGORY((int)EventCategory::EventCategoryApplication)
 	};
 
@@ -48,7 +57,10 @@ namespace Razix {
 	public:
 		AppUpdateEvent() {}
 
-		EVENT_CLASS_TYPE(AppUpdate)
+//		EVENT_CLASS_TYPE(return EventType::AppUpdate)
+        static EventType GetStaticType() { return EventType::AppUpdate; }
+        virtual EventType GetEventType() const override { return GetStaticType(); }
+        virtual const char* GetName() const override { return "test"; }
 		EVENT_CLASS_CATEGORY((int)EventCategory::EventCategoryApplication)
 	};
 
@@ -57,7 +69,10 @@ namespace Razix {
 	public:
 		AppRenderEvent() {}
 
-		EVENT_CLASS_TYPE(AppRender)
+//		EVENT_CLASS_TYPE(return EventType::AppRender)
+        static EventType GetStaticType() { return EventType::AppRender; }
+        virtual EventType GetEventType() const override { return GetStaticType(); }
+        virtual const char* GetName() const override { return "test"; }
 		EVENT_CLASS_CATEGORY((int)EventCategory::EventCategoryApplication)
 	};
 }

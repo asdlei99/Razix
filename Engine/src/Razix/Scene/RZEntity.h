@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Razix/Core/RZUUID.h"
+#include "Razix/Scene/RZScene.h"
 
 #include <entt.hpp>
 

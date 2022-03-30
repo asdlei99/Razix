@@ -3,6 +3,12 @@
 #include "Razix/Graphics/RZMesh.h"
 #include "Razix/Graphics/RZMeshFactory.h"
 
+#include "Razix/Core/RZApplication.h"
+#include "Razix/Core/OS/RZVirtualFileSystem.h"
+
+#include <cereal/types/vector.hpp>
+#include <cereal/archives/json.hpp>
+
 namespace Razix {
     namespace Graphics {
 

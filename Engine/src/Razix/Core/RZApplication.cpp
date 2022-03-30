@@ -35,15 +35,15 @@ namespace Razix
         m_AppFilePath = razixRoot + projectRoot;
         RAZIX_CORE_TRACE("Project file path : {0}", m_AppFilePath);
 
-        Razix::RZSplashScreen::Get().setLogString("Loading Shader Cache...");
-        Razix::RZSplashScreen::Get().setLogString("Loading Project Assets..");
+        //Razix::RZSplashScreen::Get().setLogString("Loading Shader Cache...");
+        //Razix::RZSplashScreen::Get().setLogString("Loading Project Assets..");
 
         // Mount the VFS paths based on the Project directory (done here cause the Application can make things easier by making this easy by loading some default directories, others can be added later sandbox shouldn't be troubled by all this labor work)
        // First the default sandbox or sample project is loaded that is provided by the engine that resides with the engine 
        // Next it checks the command line for the project file directory
        // Project root directory
         RAZIX_CORE_TRACE("Mounting file systems... for Project at : {0}", m_AppFilePath);
-        Razix::RZSplashScreen::Get().setLogString("Mounting file systems...");
+        //Razix::RZSplashScreen::Get().setLogString("Mounting file systems...");
 
         RZVirtualFileSystem::Get().mount("Project", m_AppFilePath);
 
@@ -95,7 +95,7 @@ namespace Razix
 
         // TODO: Load any other Engine systems that needs to be done only in the Application
         // Destroy the Splash Screen before we create the window
-        Razix::RZSplashScreen::Get().destroy();
+        //Razix::RZSplashScreen::Get().destroy();
 
         // Create the Window
         m_Window = UniqueRef<RZWindow>(RZWindow::Create(m_WindowProperties));

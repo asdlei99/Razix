@@ -30,9 +30,6 @@ project "Razix"
     kind "SharedLib"
     language "C++"
 
-    pchheader "src/rzxpch.h"
-    pchsource "src/rzxpch.cpp"
-
     -- Razix Engine defines (Global)
     defines
     {
@@ -56,21 +53,21 @@ project "Razix"
         "src/**.h",
         "src/**.c",
         "src/**.cpp",
-        "src/**.inl",
+        "src/**.inl"
         -- Shader files
         -- GLSL
-        "content/Shaders/GLSL/*.vert",
-        "content/Shaders/GLSL/*.frag",
-        -- HLSL
-        "content/Shaders/HLSL/*.hlsl",
-        -- PSSL
-        "content/Shaders/PSSL/*.pssl",
-        "content/Shaders/PSSL/*.h",
-        "content/Shaders/PSSL/*.hs",
-        -- Cg
-        "content/Shaders/CG/*.cg",
-        -- Razix Shader Files
-        "content/Shaders/Razix/*.rzsf"
+        --"content/Shaders/GLSL/*.vert",
+        --"content/Shaders/GLSL/*.frag",
+        ---- HLSL
+        --"content/Shaders/HLSL/*.hlsl",
+        ---- PSSL
+        --"content/Shaders/PSSL/*.pssl",
+        --"content/Shaders/PSSL/*.h",
+        --"content/Shaders/PSSL/*.hs",
+        ---- Cg
+        --"content/Shaders/CG/*.cg",
+        ---- Razix Shader Files
+        --"content/Shaders/Razix/*.rzsf"
     }
 
     -- Lazily add the platform files based on OS config
@@ -144,14 +141,6 @@ project "Razix"
     -- Don't build the shaders, they are compiled by the engine once and cached
    filter { "files:**.glsl or **.hlsl or **.pssl or **.cg or **.rzsf"}
         flags { "ExcludeFromBuild"}
-
-    -- Build GLSL files based on their extension
-    filter {"files:**.vert or **.frag"}
-        removeflags "ExcludeFromBuild"
-        buildmessage 'Compiling glsl shader : %{file.name}'
-        buildcommands 'glslc.exe "%{file.directory}/%{file.name}" -o "%{file.directory}/../Compiled/SPIRV/%{file.name}.spv" '
-        buildoutputs "%{file.directory}/../Compiled/SPIRV/%{file.name }.spv"
-
 
     -- Disable PCH for vendors
     filter 'files:vendor/**.cpp'
@@ -252,16 +241,22 @@ project "Razix"
         {
             "/MP", "/bigobj"
         }
+        
+        -- Build GLSL files based on their extension (Currently windows only cause of glslc compiler extension that needs to adapted to MacOS and linux later)
+        filter {"files:**.vert or **.frag"}
+            removeflags "ExcludeFromBuild"
+            buildmessage 'Compiling glsl shader : %{file.name}'
+            buildcommands 'glslc.exe "%{file.directory}/%{file.name}" -o "%{file.directory}/../Compiled/SPIRV/%{file.name}.spv" '
+            buildoutputs "%{file.directory}/../Compiled/SPIRV/%{file.name }.spv"
 
     ---- Macos OS Build Settings
     --------------------------------------------------------------------------------
     filter "system:macosx"
         cppdialect "C++17"
         staticruntime "off"
-        systemversion "latest"
 
-        pchheader "rzxpch.h"
-        pchsource "src/rzxpch.cpp"
+        pchheader "../Engine/src/rzxpch.h"
+        pchsource "../Engine/src/rzxpch.cpp"
 
         defines
         {
@@ -278,6 +273,8 @@ project "Razix"
         -- Windows specific source files for compilation
         files
         {
+            "src/Razix/Platform/Windows/*.h",
+            "src/Razix/Platform/Windows/*.cpp",
             -- platform sepecific implementatioon
             "src/Razix/Platform/MacOS/*.h",
             "src/Razix/Platform/MacOS/*.cpp",
@@ -312,7 +309,7 @@ project "Razix"
         links
         {
             -- Render API
-            "vulkan",
+            "vulkan.1",
             "Metal.framework",
             "MetalKit.framework",
             "Cocoa.framework",

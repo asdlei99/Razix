@@ -80,17 +80,17 @@ namespace Razix {
 
     CameraComponent& RZScene::getSceneCamera()
     {
-        auto& view = m_Registry.view<CameraComponent>();
+        auto view = m_Registry.view<CameraComponent>();
         for (auto& entity : view)
             return view.get<CameraComponent>(entity);
     }
 
-    template<typename T>
-    void RZScene::OnComponentAdded(RZEntity entity, T& component, bool enable)
+    template<typename T> void RZScene::OnComponentAdded(RZEntity entity, T& component, bool enable)
     {
         if (enable)
-            m_Registry.on_construct<T>().connect<&T::OnConstruct>();
+           m_Registry.on_construct<T>().template connect<&T::OnConstruct>();
         else
-            m_Registry.on_construct<T>().disconnect<&T::OnConstruct>();
+            m_Registry.on_construct<T>().template disconnect<&T::OnConstruct>();
     }
 }
+ 

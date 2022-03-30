@@ -112,6 +112,51 @@ project "Sandbox"
         }
 
         disablewarnings { 4307 }
+        
+        ---- Macos OS Build Settings
+    --------------------------------------------------------------------------------
+    filter "system:macosx"
+        cppdialect "C++17"
+        staticruntime "off"
+
+        defines
+        {
+        -- OS Defines for Engine
+            "RAZIX_PLATFORM_MACOS",
+        -- Render API supported by the OS
+            "RAZIX_RENDER_API_VULKAN",
+            "RAZIX_RENDER_API_METAL",
+        -- Engine Features
+            "RAZIX_USE_GLFW_WINDOWS" -- Use GLFW Winodws instead of native cocoa window until Metal support is added
+        -- MacOS specific build settings
+        }
+
+        -- Windows specific incldue directories
+        includedirs
+        {
+            VulkanSDK .. "/macOS/include"
+        }
+
+        -- Windows specific library directories
+        libdirs
+        {
+            VulkanSDK .. "/macOS/lib"
+        }
+
+        -- MacOS specific linkage libraries (Metal and other stuff)
+        links
+        {
+            -- Render API
+            "vulkan",
+            "Metal.framework",
+            "MetalKit.framework",
+            "Cocoa.framework",
+            "IOKit.framework",
+            "QuartzCore.framework",
+            "CoreFoundation.framework",
+        }
+
+    -- TODO: Add support for iOS
 
     filter "configurations:Debug"
         defines { "RAZIX_DEBUG", "_DEBUG" }

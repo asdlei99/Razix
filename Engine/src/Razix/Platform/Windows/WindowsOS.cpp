@@ -18,15 +18,15 @@ namespace Razix
 	{
 		RAZIX_CORE_INFO("Creating Windows OS instance");
 		RAZIX_CORE_INFO("System OS : {0}", RAZIX_STRINGIZE(RAZIX_BUILD_CONFIG));
-	#ifdef RAZIX_USE_GLFW_WINDOWS
+	//#ifdef RAZIX_USE_GLFW_WINDOWS
 		// Set GLFW as window when the Engine API will be called to create the window
 		GLFWWindow::Construct();
 		// Select GLFW as the input manager client
 		RZInput::SelectGLFWInputManager();
-	#else 
-		WindowsWindow::Construct();
-		Razix::RZInput* Razix::RZInput::sInstance = new WindowsInput();
-	#endif
+	//#else
+		//WindowsWindow::Construct();
+		//Razix::RZInput* Razix::RZInput::sInstance = new WindowsInput();
+	//#endif
 
 	}
 

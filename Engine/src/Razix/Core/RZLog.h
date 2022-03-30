@@ -2,12 +2,12 @@
 
 #include "Razix/Core/RZCore.h"
 
-RAZIX_WARNING_PUSH()
+//RAZIX_WARNING_PUSH()
     #pragma warning( disable : 26812)
     #include <spdlog/spdlog.h>
     #include <spdlog/sinks/stdout_color_sinks.h>
     #include <spdlog/fmt/ostr.h>
-RAZIX_WARNING_POP()
+//RAZIX_WARNING_POP()
 
 namespace Razix {
     namespace Debug

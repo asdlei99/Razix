@@ -54,9 +54,9 @@ public:
        
         // Add entities to the scene programatically for the first time
         // Camera Entity
-        auto& cameras = activeScene->GetComponentsOfType<CameraComponent>();
+        auto cameras = activeScene->GetComponentsOfType<CameraComponent>();
         if (!cameras.size()) {
-            RZEntity& camera = activeScene->createEntity("Camera");
+            RZEntity camera = activeScene->createEntity("Camera");
             camera.AddComponent<CameraComponent>();
             if (camera.HasComponent<CameraComponent>()) {
                 CameraComponent& cc = camera.GetComponent<CameraComponent>();
@@ -78,13 +78,13 @@ public:
             Graphics::RZAPIRenderer::Init();
 
             // Add some model entities
-            auto& modelEnitties = activeScene->GetComponentsOfType<Graphics::RZModel>();
+            auto modelEnitties = activeScene->GetComponentsOfType<Graphics::RZModel>();
             if (!modelEnitties.size()) {
                 // Avocado
-                auto& avocadoModelEntity = activeScene->createEntity("Avocado Angle Model");
+                auto avocadoModelEntity = activeScene->createEntity("Avocado Angle Model");
                 avocadoModelEntity.AddComponent<Graphics::RZModel>("//Meshes/Avocado.gltf");
                 // Plane
-                auto& planeEntity = activeScene->createEntity("Ground");
+                auto planeEntity = activeScene->createEntity("Ground");
                 planeEntity.AddComponent<MeshRendererComponent>(Graphics::MeshFactory::CreatePrimitive(Graphics::MeshPrimitive::Plane));
             }
         }
@@ -101,7 +101,7 @@ public:
             activeScene = Razix::RZEngine::Get().getSceneManager().getCurrentScene();
         }
         // Update the camera
-        auto& cameras = activeScene->GetComponentsOfType<CameraComponent>();
+        auto cameras = activeScene->GetComponentsOfType<CameraComponent>();
         activeScene->getSceneCamera().Camera.update(dt.GetTimestepMs());
 
         if (Razix::Graphics::RZGraphicsContext::GetRenderAPI() == Razix::Graphics::RenderAPI::OPENGL) {
@@ -125,7 +125,7 @@ public:
                 // draw related buffer bindings + Draw commands here
                 {
                     // Draw the models
-                    auto& mcs = activeScene->GetComponentsOfType<Graphics::RZModel>();
+                    auto mcs = activeScene->GetComponentsOfType<Graphics::RZModel>();
                     for (auto& mc : mcs) {
                         auto& meshes = mc.getMeshes();
                         for (auto& mesh : meshes) {
@@ -137,7 +137,7 @@ public:
                     }
 
                     // Draw the meshes
-                    auto& mrcs = activeScene->GetComponentsOfType<MeshRendererComponent>();
+                    auto mrcs = activeScene->GetComponentsOfType<MeshRendererComponent>();
                     for (auto& mrc : mrcs) {
                         mrc.Mesh->getVertexBuffer()->Bind(Graphics::RZAPIRenderer::getSwapchain()->getCurrentCommandBuffer());
                         mrc.Mesh->getIndexBuffer()->Bind(Graphics::RZAPIRenderer::getSwapchain()->getCurrentCommandBuffer());

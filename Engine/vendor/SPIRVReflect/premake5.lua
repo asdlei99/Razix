@@ -1,6 +1,7 @@
 project "SPIRVReflect"
     kind "StaticLib"
-    language "C"
+    language "C++"
+    cppdialect "C++17"
 
     targetdir ("bin/" .. outputdir .. "/%{prj.name}")
     objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -19,9 +20,8 @@ project "SPIRVReflect"
         "include"
     }
 
-    filter "system:linux"
+    filter "system:linux or system:macosx"
         pic "On"
-
         systemversion "latest"
         staticruntime "off"
 

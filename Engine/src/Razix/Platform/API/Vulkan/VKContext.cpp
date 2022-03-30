@@ -8,7 +8,7 @@
 #include "Razix/Platform/API/Vulkan/VKDevice.h"
 #include "Razix/Platform/API/Vulkan/VKUtilities.h"
 
-#include <vulkan/vulkan.h>
+#include "vulkan/vulkan.h"
 #include <glfw/glfw3.h>
 
 #define VK_LAYER_LUNARG_STANDARD_VALIDATION_NAME "VK_LAYER_KHRONOS_validation"
@@ -71,7 +71,7 @@ namespace Razix {
             appInfo.applicationVersion          = VK_MAKE_VERSION(1, 0, 0); // TODO: Add this feature later! once we add it to the Application class
             appInfo.pEngineName                 = "Razix Engine";
             appInfo.engineVersion               = VK_MAKE_VERSION(RazixVersion.getVersionMajor(), RazixVersion.getVersionMinor(), RazixVersion.getVersionPatch());
-            appInfo.apiVersion                  = VK_API_VERSION_1_1;
+            appInfo.apiVersion                  = VK_API_VERSION_1_0;
 
             // Instance Create Info
             VkInstanceCreateInfo instanceCI{};
@@ -113,7 +113,29 @@ namespace Razix {
             std::vector<const char*> layers;
             if (m_EnabledValidationLayer)
                 layers.emplace_back(VK_LAYER_LUNARG_STANDARD_VALIDATION_NAME);
-            return layers;
+            
+            uint32_t layerCount;
+            vkEnumerateInstanceLayerProperties(&layerCount, nullptr);
+            std::vector<VkLayerProperties> availableLayers(layerCount);
+            vkEnumerateInstanceLayerProperties(&layerCount, availableLayers.data());
+
+            for (const char* layer : layers)
+            {
+                bool layerFound = false;
+                for (const auto& availLayer : availableLayers)
+                {
+                    if(strcmp(layer, availLayer.layerName) == 0)
+                    {
+                        layerFound = true;
+                        RAZIX_CORE_INFO("[VULKAN] Layer found : {0}", layer);
+                        break;
+                    }
+                }
+                if(!layerFound)
+                    RAZIX_CORE_ERROR("[VULKAN] Layer not found : {0}", layer);
+            }
+            
+            return  layers;;
         }
 
         std::vector<const char*> VKContext::getRequiredExtensions() {
@@ -125,7 +147,7 @@ namespace Razix {
             RAZIX_CORE_TRACE("[Vulkan] GLFW loaded extensions count : {0}", glfwExtensionsCount);
 
             // This is just for information and Querying purpose
-#ifdef RAZIX_DEBUGgg
+#ifdef RAZIX_DEBUG
             // Get the total list of supported Extension by Vulkan
             uint32_t supportedExtensionCount = 0;
             vkEnumerateInstanceExtensionProperties(nullptr, &supportedExtensionCount, nullptr);

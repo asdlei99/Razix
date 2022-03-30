@@ -11,7 +11,7 @@
 #include "Razix/Platform/API/Vulkan/VKDevice.h"
 #include "Razix/Platform/API/Vulkan/VKSwapchain.h"
 
-#include <vulkan/vulkan.h>
+#include "vulkan/vulkan.h"
 
 struct GLFWwindow;
 
@@ -45,7 +45,7 @@ namespace Razix {
         private:
             RZWindow*                           m_Window;                           /* The Window handle                                    */
             VkInstance                          m_Instance;                         /* The Vulkan instance handle                           */
-            bool                                m_EnabledValidationLayer;           /* Whether or not to enable validation layers on not    */
+            bool                                m_EnabledValidationLayer = true;    /* Whether or not to enable validation layers on not    */
             std::vector<VkLayerProperties>      m_InstanceLayers;                   /* Collection of list of Instance layers supported      */
             std::vector<VkExtensionProperties>  m_InstanceExtensions;               /* Collection of list of supported Extension            */
             std::vector<const char*>            m_RequiredInstanceLayerNames;       /* The list of Required Layers by the engine            */

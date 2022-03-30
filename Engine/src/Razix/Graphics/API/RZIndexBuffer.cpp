@@ -13,7 +13,7 @@ namespace Razix {
         RZIndexBuffer* RZIndexBuffer::Create(uint32_t* data, uint32_t count, BufferUsage bufferUsage /*= BufferUsage::STATIC*/)
         {
             switch (RZGraphicsContext::GetRenderAPI()) {
-                case Razix::Graphics::RenderAPI::OPENGL:    return new OpenGLIndexBuffer(data, count, bufferUsage); break;
+                case Razix::Graphics::RenderAPI::OPENGL:    //return new OpenGLIndexBuffer(data, count, bufferUsage); break;
                 case Razix::Graphics::RenderAPI::VULKAN:    return new VKIndexBuffer(data, count, bufferUsage); break;
                 case Razix::Graphics::RenderAPI::DIRECTX11:
                 case Razix::Graphics::RenderAPI::DIRECTX12:

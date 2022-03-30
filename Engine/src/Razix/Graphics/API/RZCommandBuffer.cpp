@@ -17,7 +17,7 @@ namespace Razix {
         RZCommandBuffer* RZCommandBuffer::Create()
         {
             switch (Graphics::RZGraphicsContext::GetRenderAPI()) {
-                case Razix::Graphics::RenderAPI::OPENGL:    return new OpenGLCommandBuffer(); break;
+                case Razix::Graphics::RenderAPI::OPENGL:    //return new OpenGLCommandBuffer(); break;
                 case Razix::Graphics::RenderAPI::VULKAN:    return new VKCommandBuffer(); break;
                 case Razix::Graphics::RenderAPI::DIRECTX11:
                 case Razix::Graphics::RenderAPI::DIRECTX12:

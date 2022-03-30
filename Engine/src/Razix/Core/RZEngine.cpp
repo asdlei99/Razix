@@ -6,9 +6,6 @@
 
 #include <chrono>
 
-#include <vulkan/vulkan.h>
-#include <d3d11.h>
-
 namespace Razix
 {
     void RZEngine::Ignite()
@@ -19,7 +16,7 @@ namespace Razix
         RAZIX_CORE_INFO("***********************************");
         RAZIX_CORE_INFO("*          Igniting Engine....    *");
         RAZIX_CORE_INFO("***********************************");
-        Razix::RZSplashScreen::Get().setLogString("Igniting Engine...");
+        //Razix::RZSplashScreen::Get().setLogString("Igniting Engine...");
 
         // TODO: Temp code remove this!!!
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
@@ -45,7 +42,7 @@ namespace Razix
         RAZIX_CORE_INFO("***********************************");
         RAZIX_CORE_INFO("*          Engine Ignited!        *");
         RAZIX_CORE_INFO("***********************************");
-        Razix::RZSplashScreen::Get().setLogString("Engine Ignited!");
+        //Razix::RZSplashScreen::Get().setLogString("Engine Ignited!");
 
         // TODO: Temp code remove this!!!
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));

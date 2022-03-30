@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Razix/Core/RZCore.h"
+#include "Razix/Core/RZEngine.h"
 #include "Razix/Core/OS/RZWindow.h"
 #include "Razix/Core/RZSmartPointers.h"
 #include "Razix/Core/RZUUID.h"
@@ -14,6 +15,7 @@
 #include "Razix/Utilities/RZTimer.h"
 
 #include "Razix/Graphics/API/RZSwapchain.h"
+#include "Razix/Graphics/API/RZGraphicsContext.h"
 
 // Cereal
 #pragma warning(push, 0)
